@@ -35,8 +35,54 @@ public class HdfsApiTests {
         String localPath = "E:\\IdeaProjects\\study\\hadoop-study\\hdfsDemo\\src\\main\\resources\\copy_words.txt";
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf, "root");
+        // 不加第一个和第四个参数会报错:
+        // java.io.IOException: (null) entry in command string: null chmod 0644
         fs.copyToLocalFile(false, new Path(hdfsPath), new Path(localPath), true);
         fs.close();
+    }
 
+    /*4.6.3创建HDFS目录*/
+    @Test
+    public void createDir() throws IOException, InterruptedException {
+        String url = "hdfs://server-1:9000/tmp/";
+        Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(URI.create(url), conf, "root");
+        boolean b = fs.mkdirs(new Path(url));
+        System.out.println(b);
+        fs.close();
+    }
+
+    /*4.6.4删除文件或目录*/
+    @Test
+    public void deleteFile() throws IOException, InterruptedException {
+        String uri = "hdfs://server-1:9000/tmp";
+        Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(URI.create(uri), conf, "root");
+        boolean b = fs.delete(new Path(uri));
+        System.out.println(b);
+        fs.close();
+    }
+
+    /*4.6.5下载HDFS目录*/
+    @Test
+    public void copyToLocalFile() throws IOException, InterruptedException {
+        String hdfsPath = "hdfs://server-1:9000/user/root/input";
+        String localPath = "E:\\IdeaProjects\\study\\hadoop-study\\hdfsDemo\\src\\main\\resources\\";
+        Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf, "root");
+        fs.copyToLocalFile(false, new Path(hdfsPath), new Path(localPath), true);
+//        fs.copyToLocalFile(false, new Path(hdfsPath), new Path(localPath));
+        fs.close();
+    }
+
+    /*4.6.6上传本地目录*/
+    @Test
+    public void copyFromLocalFile() throws IOException, InterruptedException {
+        String hdfsPath = "hdfs://server-1:9000/user/root/";
+        String localPath = "E:\\IdeaProjects\\study\\hadoop-study\\hdfsDemo\\src\\main\\resources\\words";
+        Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf, "root");
+        fs.copyFromLocalFile(new Path(localPath), new Path(hdfsPath));
+        fs.close();
     }
 }
