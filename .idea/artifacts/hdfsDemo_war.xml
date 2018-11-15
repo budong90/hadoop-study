@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hdfsDemo:war">
+    <output-path>$PROJECT_DIR$/hdfsDemo/target</output-path>
+    <root id="archive" name="hdfsDemo.war">
+      <element id="artifact" artifact-name="hdfsDemo:war exploded" />
+    </root>
+  </artifact>
+</component>
