@@ -1,0 +1,3 @@
+Java Java
+Hadoop Hadoop Hadoop
+Hello World Hello World
