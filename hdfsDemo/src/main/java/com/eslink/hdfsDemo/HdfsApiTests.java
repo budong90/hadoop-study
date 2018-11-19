@@ -1,6 +1,7 @@
 package com.eslink.hdfsDemo;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.junit.Test;
@@ -83,6 +84,23 @@ public class HdfsApiTests {
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf, "root");
         fs.copyFromLocalFile(new Path(localPath), new Path(hdfsPath));
+        fs.close();
+    }
+
+    @Test
+    public void listFile() throws IOException, InterruptedException {
+        String hdfsPath = "hdfs://server-1:9000/user/";
+        Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf, "root");
+        FileStatus[] st = fs.listStatus(new Path(hdfsPath));
+        for (FileStatus fileStatus : st) {
+            System.out.println(fileStatus);
+            if (fileStatus.isDirectory()) {
+                for (FileStatus s2 : fs.listStatus(fileStatus.getPath())) {
+                    System.out.println(s2);
+                }
+            }
+        }
         fs.close();
     }
 }
