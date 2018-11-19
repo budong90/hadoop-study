@@ -11,9 +11,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
@@ -34,12 +32,13 @@ public class MaxTemperature extends Configured implements Tool {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String line = value.toString();
+            System.out.println("key=" + key + ",value=" + value);
             String year = line.substring(15, 19);
             int airTemperature;
             if (line.charAt(87) == '+') {
-                airTemperature = Integer.parseInt(line.substring(88, 92));
+                airTemperature = (int) Double.parseDouble(line.substring(88, 92).trim());
             } else {
-                airTemperature = Integer.parseInt(line.substring(87, 92));
+                airTemperature = (int) Double.parseDouble(line.substring(87, 92).trim());
             }
             String quality = line.substring(92, 93);
             if (airTemperature != MISSING && quality.matches("[01459]")) {
@@ -80,8 +79,8 @@ public class MaxTemperature extends Configured implements Tool {
         job.setMapperClass(MaxTemperatureMapper.class);
         job.setReducerClass(MaxTemperatureReducer.class);
 
-        job.setInputFormatClass(KeyValueTextInputFormat.class);
-        job.setOutputFormatClass(TextOutputFormat.class);
+//        job.setInputFormatClass(KeyValueTextInputFormat.class);
+//        job.setOutputFormatClass(TextOutputFormat.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 

@@ -29,6 +29,7 @@ public class CiteMapReduce extends Configured implements Tool {
     public static class MapClass extends Mapper<Text, Text, Text, Text> {
         @Override
         protected void map(Text key, Text value, Context context) throws IOException, InterruptedException {
+            System.out.println("key=" + key + ",value=" + value);
             context.write(value, key);
         }
     }
@@ -82,6 +83,7 @@ public class CiteMapReduce extends Configured implements Tool {
             String[] args0 = {"/user/root/cite/input/cite75_99.txt", "/user/root/cite/output/"};
             int res = ToolRunner.run(new Configuration(), new CiteMapReduce(), args0);
 //            System.exit(res);
+            System.out.println("res=" + res + ",cost=" + (System.currentTimeMillis() - start) + " ms");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

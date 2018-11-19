@@ -26,9 +26,9 @@ public class MinTemperature extends Configured implements Tool {
             String year = line.substring(15, 19);
             int airTemperature;
             if (line.charAt(87) == '+') {
-                airTemperature = Integer.parseInt(line.substring(88, 92));
+                airTemperature = (int) Double.parseDouble(line.substring(88, 92).trim());
             } else {
-                airTemperature = Integer.parseInt(line.substring(87, 92));
+                airTemperature = (int) Double.parseDouble(line.substring(87, 92).trim());
             }
             String quality = line.substring(92, 93);
             if (airTemperature != MISSING && quality.matches("[01459]")) {
