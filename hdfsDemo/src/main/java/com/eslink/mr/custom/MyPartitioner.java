@@ -1,4 +1,4 @@
-package com.eslink.mrCustom;
+package com.eslink.mr.custom;
 
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;

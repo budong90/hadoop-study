@@ -1,4 +1,4 @@
-package com.eslink.mrDemo;
+package com.eslink.mr.demo;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;

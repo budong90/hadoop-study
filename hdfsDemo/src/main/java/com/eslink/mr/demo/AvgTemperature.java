@@ -1,4 +1,4 @@
-package com.eslink.mrDemo;
+package com.eslink.mr.demo;
 
 import java.io.IOException;
 

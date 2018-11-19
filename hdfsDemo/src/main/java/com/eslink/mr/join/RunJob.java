@@ -1,4 +1,4 @@
-package com.eslink.mrJoin;
+package com.eslink.mr.join;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;

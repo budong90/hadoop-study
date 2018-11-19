@@ -1,4 +1,4 @@
-package com.eslink.mrCustom;
+package com.eslink.mr.custom;
 
 import java.io.DataInput;
 import java.io.DataOutput;

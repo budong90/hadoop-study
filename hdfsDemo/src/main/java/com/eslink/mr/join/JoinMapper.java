@@ -1,4 +1,4 @@
-package com.eslink.mrJoin;
+package com.eslink.mr.join;
 
 import java.io.IOException;
 

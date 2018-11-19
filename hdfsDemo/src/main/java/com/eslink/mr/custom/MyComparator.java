@@ -1,4 +1,4 @@
-package com.eslink.mrCustom;
+package com.eslink.mr.custom;
 
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
