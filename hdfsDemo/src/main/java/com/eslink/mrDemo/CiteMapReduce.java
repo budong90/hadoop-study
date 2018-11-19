@@ -1,4 +1,4 @@
-package com.eslink.hdfsDemo;
+package com.eslink.mrDemo;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -76,13 +76,16 @@ public class CiteMapReduce extends Configured implements Tool {
     }
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         System.setProperty("HADOOP_USER_NAME", "root");
         try {
             String[] args0 = {"/user/root/cite/input/cite75_99.txt", "/user/root/cite/output/"};
             int res = ToolRunner.run(new Configuration(), new CiteMapReduce(), args0);
-            System.exit(res);
+//            System.exit(res);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            System.out.println("耗时：" + (System.currentTimeMillis() - start) + " ms");
         }
     }
 }
